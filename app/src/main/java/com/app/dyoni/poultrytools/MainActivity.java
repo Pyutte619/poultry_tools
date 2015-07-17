@@ -19,19 +19,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private ArrayList<FlatButton> flatButtons = new ArrayList<FlatButton>();
     private ArrayList<String> inputPakanString = new ArrayList<>();
     private ArrayList<Float> inputPakanFloat = new ArrayList<Float>();
+    private ArrayList<Float> protein = new ArrayList<Float>();
     private ArrayList<Float> hasilProtein = new ArrayList<Float>();
     float sum= (float) 0.0;
-    float protein_pakanJadi=(float) 0.22;
-    float protein_bekatulPadi=(float) 0.13;
-    float protein_dedakPadi=(float) 0.10;
-    float protein_jagungGiling=(float) 0.09;
-    float protein_polar=(float) 0.16;
-    float protein_tepungIkanKls1=(float) 0.60;
-    float protein_tepungIkanKls2=(float) 0.40;
-    float protein_pakankonsentrat=(float) 0.32;
-    float protein_bungkilKedele=(float) 0.44;
-    float protein_minyakSawit=(float) 0.0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +43,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         flatButtons.add((FlatButton) findViewById(R.id.button_hitung));
         flatButtons.get(0).setOnClickListener(this);
-
-
+        protein.add((float)0.22);
+        protein.add((float)0.13);
+        protein.add((float)0.10);
+        protein.add((float)0.09);
+        protein.add((float)0.16);
+        protein.add((float)0.60);
+        protein.add((float)0.40);
+        protein.add((float)0.32);
+        protein.add((float)0.44);
+        protein.add((float)0.00);
 
     }
 
@@ -83,17 +81,22 @@ void convertToFloatandSum(){
     for(int i=0;i<10;i++) {
         sum=sum+inputPakanFloat.get(i);
     }
- //   Log.d("sum", String.valueOf(sum));
+    Log.d("sum", String.valueOf(sum));
 }
 
-   /* void calculateProtein(){
+    void calculateProtein(){
         for(int i=0;i<10;i++) {
             if((inputPakanFloat.get(i)).equals(0.0)){
-                hasilProtein.add(0.0)
+                hasilProtein.add((float)0.0);
+            }else{
+                hasilProtein.add((float)(inputPakanFloat.get(i)/sum)*protein.get(i));
             }
         }
+        for(int i=0;i<10;i++) {
+            Log.d("hasil protein", String.valueOf(hasilProtein.get(i)));
+        }
 
-    }*/
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -120,5 +123,6 @@ void convertToFloatandSum(){
     public void onClick(View v) {
         getAllInputs();
         convertToFloatandSum();
+        calculateProtein();
     }
 }
