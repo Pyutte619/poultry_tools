@@ -3,4 +3,16 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string-array name="pakanArray">
+        <item>Pakan Jadi</item>
+        <item>Bekatul Padi</item>
+        <item>Dedak Padi</item>
+        <item>Jagung Giling</item>
+        <item>Polar</item>
+        <item>Tepung Ikan Kelas 1</item>
+        <item>Tepung Ikan Kelas 2</item>
+        <item>Konsentrat</item>
+        <item>Bungkil Kedele</item>
+        <item>Minyak Sawit</item>
+        </string-array>
 </resources>

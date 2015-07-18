@@ -113,6 +113,7 @@ void convertToFloatandSum(){
         for(int i=0;i<10;i++) {
             sumProtein=sumProtein+hasilProtein.get(i);
         }
+        sumProtein=sumProtein*100;
         Log.d("sum protein", String.valueOf(sumProtein));
     }
 

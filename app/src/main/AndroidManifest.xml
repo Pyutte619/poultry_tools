@@ -21,6 +21,12 @@
             android:label="@string/app_name" >
 
         </activity>
+        <activity
+            android:name=".EditHargaActivity"
+            android:label="@string/app_name" >
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class HasilActivity extends ActionBarActivity implements View.OnClickListener{
     ArrayList<Integer> hasilProtein= new ArrayList<>();
     ArrayList<Integer> hasilEnergy= new ArrayList<>();
-    FlatButton back;FlatTextView sumProteinText;FlatTextView sumEnergiText;
+    FlatButton back,editHarga;FlatTextView sumProteinText;FlatTextView sumEnergiText;
     float sumProtein;float sumEnergy;
     private ArrayList<FlatTextView> flatTextViws = new ArrayList<FlatTextView>();
 
@@ -44,7 +44,7 @@ public class HasilActivity extends ActionBarActivity implements View.OnClickList
 
         Log.d("energi", String.valueOf(sumEnergy));
 
-            flatTextViws.add((FlatTextView) findViewById(R.id.text_hasil1));
+            /*flatTextViws.add((FlatTextView) findViewById(R.id.text_hasil1));
             flatTextViws.add((FlatTextView) findViewById(R.id.text_hasil2));
             flatTextViws.add((FlatTextView) findViewById(R.id.text_hasil3));
             flatTextViws.add((FlatTextView) findViewById(R.id.text_hasil4));
@@ -54,11 +54,15 @@ public class HasilActivity extends ActionBarActivity implements View.OnClickList
             flatTextViws.add((FlatTextView) findViewById(R.id.text_hasil8));
             flatTextViws.add((FlatTextView) findViewById(R.id.text_hasil9));
             flatTextViws.add((FlatTextView) findViewById(R.id.text_hasil10));
-            sumProteinText= (FlatTextView) findViewById(R.id.text_sumProtein);
+            */
+        sumProteinText= (FlatTextView) findViewById(R.id.text_protein);
 
-            sumEnergiText= (FlatTextView) findViewById(R.id.text_sumEnergi);
-            back= (FlatButton) findViewById(R.id.button_back);
-             back.setOnClickListener(this);
+        sumEnergiText= (FlatTextView) findViewById(R.id.text_energi);
+        back= (FlatButton) findViewById(R.id.button_back);
+        editHarga= (FlatButton) findViewById(R.id.button_editHarga);
+
+        back.setOnClickListener(this);
+        editHarga.setOnClickListener(this);
 
             //flatTextViws.get(0).setText(""+hasilProtein.get(0));
            displaytextProtein();
@@ -66,16 +70,21 @@ public class HasilActivity extends ActionBarActivity implements View.OnClickList
 
 
     void displaytextProtein(){
-        for(int i=0;i<10;i++){
-            flatTextViws.get(i).setText(" "+(hasilProtein.get(i))+" %");
-        }
+        //for(int i=0;i<10;i++){
+          //  flatTextViws.get(i).setText(" "+(hasilProtein.get(i))+" %");
+       // }
         sumProteinText.setText(" "+sumProtein+" %");
-        sumEnergiText.setText(" "+sumEnergy+" %");
+        sumEnergiText.setText(" "+sumEnergy+" Kkal");
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent=new Intent(this,MainActivity.class);
-        startActivity(intent);
+        if(v.equals(back)) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(this, EditHargaActivity.class);
+            startActivity(intent);
+        }
     }
 }
