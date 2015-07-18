@@ -1,11 +1,13 @@
 package com.app.dyoni.poultrytools;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import com.cengalabs.flatui.FlatUI;
 import com.cengalabs.flatui.views.FlatButton;
@@ -20,8 +22,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private ArrayList<String> inputPakanString = new ArrayList<>();
     private ArrayList<Float> inputPakanFloat = new ArrayList<Float>();
     private ArrayList<Float> protein = new ArrayList<Float>();
+    private ArrayList<Float> energy = new ArrayList<Float>();
     private ArrayList<Float> hasilProtein = new ArrayList<Float>();
-    float sum= (float) 0.0;
+    private ArrayList<Float> hasilEnergy = new ArrayList<Float>();
+
+    float sum= (float) 0.0;float sumProtein= (float) 0.0;float sumEnergy= (float) 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,16 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         protein.add((float)0.44);
         protein.add((float)0.00);
 
+        energy.add((float)2700);
+        energy.add((float)1850);
+        energy.add((float)2980);
+        energy.add((float)3300);
+        energy.add((float)1800);
+        energy.add((float)3600);
+        energy.add((float)2487);
+        energy.add((float)2500);
+        energy.add((float)2446);
+        energy.add((float)7356);
     }
 
 void getAllInputs(){
@@ -92,10 +107,30 @@ void convertToFloatandSum(){
                 hasilProtein.add((float)(inputPakanFloat.get(i)/sum)*protein.get(i));
             }
         }
+        //for(int i=0;i<10;i++) {
+            //Log.d("hasil protein", String.valueOf(hasilProtein.get(i)));
+        //}
         for(int i=0;i<10;i++) {
-            Log.d("hasil protein", String.valueOf(hasilProtein.get(i)));
+            sumProtein=sumProtein+hasilProtein.get(i);
         }
+        Log.d("sum protein", String.valueOf(sumProtein));
+    }
 
+    void calculateEnergy(){
+        for(int i=0;i<10;i++) {
+            if((inputPakanFloat.get(i)).equals(0.0)) {
+                hasilEnergy.add((float) 0.0);
+            }else{
+                hasilEnergy.add((float)(inputPakanFloat.get(i)/sum)*energy.get(i));
+            }
+        }
+        for(int i=0;i<10;i++) {
+            sumEnergy=sumEnergy+hasilEnergy.get(i);
+        }
+        //Log.d("sum protein", String.valueOf(sumEnergy));
+        //for(int i=0;i<10;i++) {
+          //  Log.d("hasil energi", String.valueOf(hasilEnergy.get(i)));
+        //}
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -124,5 +159,14 @@ void convertToFloatandSum(){
         getAllInputs();
         convertToFloatandSum();
         calculateProtein();
+        calculateEnergy();
+
+        Intent intent=new Intent(this,HasilActivity.class);
+        intent.putExtra("hasil protein", hasilProtein);
+        intent.putExtra("sumProtein",sumProtein);
+        intent.putExtra("hasil energy", hasilEnergy);
+        intent.putExtra("sumEnergy",sumEnergy);
+
+        startActivity(intent);
     }
 }
