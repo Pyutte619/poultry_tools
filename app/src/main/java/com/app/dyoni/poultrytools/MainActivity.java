@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.cengalabs.flatui.FlatUI;
 import com.cengalabs.flatui.views.FlatButton;
@@ -25,8 +24,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private ArrayList<Float> energy = new ArrayList<Float>();
     private ArrayList<Float> hasilProtein = new ArrayList<Float>();
     private ArrayList<Float> hasilEnergy = new ArrayList<Float>();
+    Float[] hargaPakanFloat=new Float[10];
+    String[] hargaPakan; Float[] defaults={Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0),
+                                            Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0)};
 
-    float sum= (float) 0.0;float sumProtein= (float) 0.0;float sumEnergy= (float) 0.0;
+    float sum= (float) 0.0;float sumProtein= (float) 0.0;float sumEnergy= (float) 0.0;float sumHargaPakan= (float) 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         FlatUI.initDefaultValues(this);
         FlatUI.setDefaultTheme(FlatUI.DEEP);//set the theme
         getSupportActionBar().setBackgroundDrawable(FlatUI.getActionBarDrawable(this, FlatUI.GRASS, false, 2));
+
+        Intent intent = getIntent();
+        if(intent!=null) {
+            hargaPakan = intent.getStringArrayExtra("harga pakan");
+        }
 
         flatEditTexts.add((FlatEditText) findViewById(R.id.edittext_pakanJadi));
         flatEditTexts.add((FlatEditText) findViewById(R.id.edittext_bekatulPadi));
@@ -84,6 +91,22 @@ void getAllInputs(){
     //}
 
 }
+
+    void hitungHargaPakan(){
+        if(hargaPakan!=null) {
+            for (int i = 0; i < 10; i++) {
+                hargaPakanFloat[i] = (Float.parseFloat(hargaPakan[i])) * Float.parseFloat(inputPakanString.get(i));
+
+                Log.d("harga pakan ayam", String.valueOf(hargaPakanFloat[i]));
+          }
+        }else{
+            hargaPakanFloat =defaults;
+        }
+        for (int i = 0; i < 10; i++) {
+            sumHargaPakan=sumHargaPakan+hargaPakanFloat[i];
+        }
+    }
+
 
 void convertToFloatandSum(){
     for(int i=0;i<10;i++) {
@@ -161,12 +184,14 @@ void convertToFloatandSum(){
         convertToFloatandSum();
         calculateProtein();
         calculateEnergy();
+        hitungHargaPakan();
 
         Intent intent=new Intent(this,HasilActivity.class);
         intent.putExtra("hasil protein", hasilProtein);
         intent.putExtra("sumProtein",sumProtein);
         intent.putExtra("hasil energy", hasilEnergy);
         intent.putExtra("sumEnergy",sumEnergy);
+        intent.putExtra("jumlahHargaPakan",sumHargaPakan);
 
         startActivity(intent);
     }

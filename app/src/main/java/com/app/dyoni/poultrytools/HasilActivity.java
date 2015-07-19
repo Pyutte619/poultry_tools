@@ -1,6 +1,5 @@
 package com.app.dyoni.poultrytools;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -9,7 +8,6 @@ import android.view.View;
 
 import com.cengalabs.flatui.FlatUI;
 import com.cengalabs.flatui.views.FlatButton;
-import com.cengalabs.flatui.views.FlatEditText;
 import com.cengalabs.flatui.views.FlatTextView;
 
 import java.util.ArrayList;
@@ -20,8 +18,10 @@ import java.util.ArrayList;
 public class HasilActivity extends ActionBarActivity implements View.OnClickListener{
     ArrayList<Integer> hasilProtein= new ArrayList<>();
     ArrayList<Integer> hasilEnergy= new ArrayList<>();
-    FlatButton back,editHarga;FlatTextView sumProteinText;FlatTextView sumEnergiText;
-    float sumProtein;float sumEnergy;
+
+    FlatButton back, lihatHarga;FlatTextView sumProteinText;FlatTextView sumEnergiText;
+    FlatTextView sumHargaText;
+    float sumProtein;float sumEnergy;float sumHargaPakan;
     private ArrayList<FlatTextView> flatTextViws = new ArrayList<FlatTextView>();
 
     @Override
@@ -37,6 +37,8 @@ public class HasilActivity extends ActionBarActivity implements View.OnClickList
         hasilEnergy =  intent.getIntegerArrayListExtra("hasil energy");
         sumProtein = intent.getFloatExtra("sumProtein",0);
         sumEnergy = intent.getFloatExtra("sumEnergy",0);
+        sumHargaPakan= intent.getFloatExtra("jumlahHargaPakan",0);
+
         for(int i=0;i<10;i++) {
             Log.d("protein intent", String.valueOf(hasilProtein.get(i)));
             Log.d("energi intent", String.valueOf(hasilEnergy.get(i)));
@@ -58,11 +60,12 @@ public class HasilActivity extends ActionBarActivity implements View.OnClickList
         sumProteinText= (FlatTextView) findViewById(R.id.text_protein);
 
         sumEnergiText= (FlatTextView) findViewById(R.id.text_energi);
+        sumHargaText= (FlatTextView) findViewById(R.id.text_harga);
         back= (FlatButton) findViewById(R.id.button_back);
-        editHarga= (FlatButton) findViewById(R.id.button_editHarga);
+        lihatHarga = (FlatButton) findViewById(R.id.button_lihatHarga);
 
         back.setOnClickListener(this);
-        editHarga.setOnClickListener(this);
+        lihatHarga.setOnClickListener(this);
 
             //flatTextViws.get(0).setText(""+hasilProtein.get(0));
            displaytextProtein();
@@ -75,6 +78,7 @@ public class HasilActivity extends ActionBarActivity implements View.OnClickList
        // }
         sumProteinText.setText(" "+sumProtein+" %");
         sumEnergiText.setText(" "+sumEnergy+" Kkal");
+        sumHargaText.setText("Rp. "+sumHargaPakan);
     }
 
     @Override
@@ -83,7 +87,7 @@ public class HasilActivity extends ActionBarActivity implements View.OnClickList
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }else{
-            Intent intent = new Intent(this, EditHargaActivity.class);
+            Intent intent = new Intent(this, LihatHargaActivity.class);
             startActivity(intent);
         }
     }
