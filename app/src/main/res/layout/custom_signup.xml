@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:flatui="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.cengalabs.flatui.views.FlatEditText
+        android:id="@+id/signup_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:maxLines="1"
+        android:inputType="textEmailAddress"
+        android:gravity="center_vertical"
+        android:hint="Email Anda"
+        android:includeFontPadding="true"
+        flatui:fl_fieldStyle="fl_flat"
+        flatui:fl_theme="@array/grass" />
+
+    <com.cengalabs.flatui.views.FlatEditText
+        android:id="@+id/signup_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:maxLines="1"
+        android:inputType="textEmailAddress"
+        android:gravity="center_vertical"
+        android:hint="Username Anda"
+        android:includeFontPadding="true"
+        flatui:fl_fieldStyle="fl_flat"
+        flatui:fl_theme="@array/grass" />
+
+    <com.cengalabs.flatui.views.FlatEditText
+        android:id="@+id/signup_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dip"
+        android:maxLines="1"
+        android:inputType="textPassword"
+        android:gravity="center_vertical"
+        android:hint="Password Anda"
+        android:includeFontPadding="true"
+        flatui:fl_fieldStyle="fl_flat"
+        flatui:fl_theme="@array/grass" />
+
+
+    <com.cengalabs.flatui.views.FlatTextView
+        android:id="@+id/sudahpunyaakun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="5dip"
+        android:maxLines="1"
+        android:gravity="center"
+        android:text="Sudah punya akun?"
+        android:textSize="20dip"
+        flatui:fl_textColor="fl_main"
+        flatui:fl_theme="@array/grass" />
+
+</LinearLayout>

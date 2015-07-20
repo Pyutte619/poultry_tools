@@ -3,6 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title">Masuk atau Daftar Akun</string>
+    <string name="positive">Login</string>
+    <string name="negative">Daftar</string>
+    <string name="negativeSign">Daftarkan</string>
+    <string name="action_logout">Logout</string>
     <string-array name="pakanArray">
         <item>Pakan Jadi</item>
         <item>Bekatul Padi</item>
@@ -16,5 +21,17 @@
         <item>Minyak Sawit</item>
         </string-array>
 
+<string-array name="hargaPakan">
+    <item>7800</item>
+    <item>3500</item>
+    <item>3000</item>
+    <item>5000</item>
+    <item>3500</item>
+    <item>10000</item>
+    <item>7500</item>
+    <item>7500</item>
+    <item>7600</item>
+    <item>3000</item>
 
+</string-array>
 </resources>
