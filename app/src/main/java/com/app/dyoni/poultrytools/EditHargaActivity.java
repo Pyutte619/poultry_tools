@@ -1,17 +1,21 @@
 package com.app.dyoni.poultrytools;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cengalabs.flatui.FlatUI;
 import com.cengalabs.flatui.views.FlatButton;
 import com.cengalabs.flatui.views.FlatEditText;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by tegar dion on 18/07/2015.
@@ -52,11 +56,25 @@ public class EditHargaActivity extends ActionBarActivity implements View.OnClick
             }
         }
 
+        saveHarga();
         for(int i=0;i<10;i++) {
             Log.d("harga pakans", String.valueOf(inputHargaString.get(i)));
         }
         Intent intent=new Intent(this,LihatHargaActivity.class);
         intent.putExtra("input harga pakan",inputHargaString);
         startActivity(intent);
+    }
+    void saveHarga(){
+        SharedPreferences sharedpreferences= this.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        try{
+            for(int i=0;i<10;i++){
+                editor.putInt("harga "+i, Integer.parseInt(inputHargaString.get(i)));
+            }
+        }catch (Exception e){
+            Toast.makeText(this,"no preferences srored",Toast.LENGTH_SHORT).show();
+        }
+
+editor.commit();
     }
 }

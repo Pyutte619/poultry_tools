@@ -1,6 +1,8 @@
 package com.app.dyoni.poultrytools;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -62,6 +64,11 @@ public class LihatHargaActivity extends ActionBarActivity implements View.OnClic
         btn_editarga.setOnClickListener(this);
         btn_kembaliHitung.setOnClickListener(this);
        }
+
+   // void loadData(){
+     //   SharedPreferences sharedPreferences=getSharedPreferences("dataHargaPakan", Context.MODE_PRIVATE);
+       // String[] daftarHarga=sharedPreferences.getStringSet("daftar harga",);
+    //}
 
     @Override
     public void onClick(View v) {
