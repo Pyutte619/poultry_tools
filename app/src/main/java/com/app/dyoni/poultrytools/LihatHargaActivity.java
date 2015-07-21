@@ -19,7 +19,6 @@ import com.cengalabs.flatui.views.FlatButton;
 import com.cengalabs.flatui.views.FlatEditText;
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -42,7 +41,7 @@ public class LihatHargaActivity extends ActionBarActivity implements View.OnClic
     ParseObject users = new ParseObject("User");
     ArrayList<Integer> inputHargaPakan= new ArrayList<>();
     //Dialogs dialog=new Dialogs();
-    FlatButton btn_editarga,btn_kembaliHitung;
+    FlatButton btn_keluar,btn_kembaliHitung;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,16 +51,16 @@ public class LihatHargaActivity extends ActionBarActivity implements View.OnClic
         getSupportActionBar().setBackgroundDrawable(FlatUI.getActionBarDrawable(this, FlatUI.GRASS, false, 2));
 
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        if (currentUser != null) {
-            // do stuff with the user
+       // ParseUser currentUser = ParseUser.getCurrentUser();
+       // if (currentUser != null) {
+       //     // do stuff with the user
 
-        } else {
+        //} else {
             // show the signup or login screen
 
-            alertDialogs();
+      //      alertDialogs();
 
-        }
+       // }
 
         Intent intent = getIntent();
         if(intent!=null) {
@@ -71,7 +70,7 @@ public class LihatHargaActivity extends ActionBarActivity implements View.OnClic
           //  Log.d("intent harga", String.valueOf(inputHargaPakan.get(i)));
        // }
 
-        btn_editarga= (FlatButton) findViewById(R.id.button_editHarga);
+        btn_keluar = (FlatButton) findViewById(R.id.button_keluar);
         btn_kembaliHitung= (FlatButton) findViewById(R.id.button_kembaliHitung);
 
         Resources res=getResources();
@@ -104,7 +103,7 @@ public class LihatHargaActivity extends ActionBarActivity implements View.OnClic
 
             }
         });
-        btn_editarga.setOnClickListener(this);
+        btn_keluar.setOnClickListener(this);
         btn_kembaliHitung.setOnClickListener(this);
         listViewHarga.setAdapter(adapter);
        }
@@ -280,9 +279,12 @@ public class LihatHargaActivity extends ActionBarActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        if(v.equals(btn_editarga)) {
+        if(v.equals(btn_keluar)) {
             //Intent intent = new Intent(this, EditHargaActivity.class);
            // startActivity(intent);
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
         }else{
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("harga pakan",listHargaString);

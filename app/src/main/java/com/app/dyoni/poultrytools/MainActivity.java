@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.cengalabs.flatui.FlatUI;
 import com.cengalabs.flatui.views.FlatButton;
@@ -27,6 +29,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Float[] hargaPakanFloat=new Float[10];
     String[] hargaPakan; Float[] defaults={Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0),
                                             Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0), Float.valueOf(0)};
+
 
     float sum= (float) 0.0;float sumProtein= (float) 0.0;float sumEnergy= (float) 0.0;float sumHargaPakan= (float) 0.0;
     @Override

@@ -22,6 +22,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/scroll"
         android:layout_below="@+id/judulinput">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -39,7 +40,7 @@
                     android:id="@+id/title_pakanJadi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dip"
+
                     android:layout_marginLeft="5dip"
                     android:maxLines="1"
                     android:gravity="center_vertical"
@@ -318,10 +319,14 @@
                 flatui:fl_theme="@array/grass" />
 
 
+
+
+        </LinearLayout>
             <com.cengalabs.flatui.views.FlatButton
                 android:id="@+id/button_hitung"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
+                android:layout_below="@+id/linear1"
                 android:text="Hitung"
                 android:textStyle="bold"
                 android:layout_weight="1"
@@ -330,9 +335,8 @@
                 flatui:fl_blockButtonEffectHeight="3dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true" />
-
-        </LinearLayout>
         </RelativeLayout>
+
     </ScrollView>
 
 
